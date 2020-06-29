@@ -5,10 +5,12 @@ import SwiftUI
 import URLImage
 
 class ProfileData : ObservableObject {
+    var userID: Int
     @Published var user: GetUserQuery.Data.User
 
     init(userID: Int) {
         print("Gathering user data...")
+        self.userID = userID
         self.user = GetUserQuery.Data.User(
             id: -1,
             nickname: "",
@@ -21,7 +23,7 @@ class ProfileData : ObservableObject {
     
     func gatherData() {
         let pagination = PaginationQueryInput(includeCount: true, pageNumber: 1, pageSize: 3)
-        let query = GetUserQuery(author: 7, pagination: pagination)
+        let query = GetUserQuery(author: self.userID, pagination: pagination)
         Network.shared.apollo.fetch(query: query) {
             result in
             switch result {
@@ -39,30 +41,41 @@ class ProfileData : ObservableObject {
     }
 }
 
-
-struct ProfileDetails: View {
-    @ObservedObject private var profileData = ProfileData(userID: 7)
+struct ProfileContentView: View {
+    @ObservedObject var profileData : ProfileData
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
-            
-            if self.profileData.user.profilePicUrl.count > 0 {
-                URLImage(URL(string: self.profileData.user.profilePicUrl)!, placeholder: Image(systemName: "circle"))
-                    { proxy in
-                    proxy.image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100.0, height: 100.0)
-                        .clipped()
-                    }
-                .frame(width: 100.0, height: 100.0)
-                .border(Color(UIColor(named: "DessertColor")!), width: 4)
-            } else {
-                Text("Invalid Image").font(.footnote)
-            }
-            Text("@" + self.profileData.user.nickname).font(.body).bold()
-            
-            TokensView(tokens: self.profileData.user.tokens).padding()
+        
+        if self.profileData.user.profilePicUrl.count > 0 {
+            URLImage(URL(string: self.profileData.user.profilePicUrl)!, placeholder: Image(systemName: "circle"))
+                { proxy in
+                proxy.image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 100.0, height: 100.0)
+                    .clipped()
+                }
+            .frame(width: 100.0, height: 100.0)
+            .border(Color(UIColor(named: "DessertColor")!), width: 4)
+        } else {
+            Text("Invalid Image").font(.footnote)
+        }
+        Text("@" + self.profileData.user.nickname).font(.body).bold()
+        
+        TokensView(tokens: self.profileData.user.tokens).padding()
+    }
+    }
+}
+
+
+struct ProfileDetails: View {
+    @EnvironmentObject var userAuth: UserAuth
+    
+    
+    var body: some View {
+        VStack(alignment: .center, spacing: 10) {
+            ProfileContentView(profileData: ProfileData(userID: userAuth.userID))
         }
     }
 }
