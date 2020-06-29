@@ -3,10 +3,12 @@
 import SwiftUI
 
 class ModulesData : ObservableObject {
+    var userID: Int
     @Published var modules: [GetUserQuery.Data.User.Module.Result]
 
     init(userID: Int) {
         print("Gathering modules data...")
+        self.userID = userID
         self.modules = []
         gatherData()
     }
@@ -16,7 +18,7 @@ class ModulesData : ObservableObject {
         
         let pagination = PaginationQueryInput(includeCount: true, pageNumber: 1, pageSize: 10)
         
-        let query = GetUserQuery(author: 7, pagination: pagination)
+        let query = GetUserQuery(author: self.userID, pagination: pagination)
         
         Network.shared.apollo.fetch(query: query) {
             result in
@@ -36,12 +38,22 @@ class ModulesData : ObservableObject {
     }
 }
 
-struct MyModulesView: View {
-    @ObservedObject private var data = ModulesData(userID: 7)
+struct MyModulesContent: View {
+    @ObservedObject var data : ModulesData
     
     var body: some View {
         VStack {
             ModuleList(modules: data.modules)
+        }
+    }
+}
+
+struct MyModulesView: View {
+    @EnvironmentObject var userAuth: UserAuth
+    
+    var body: some View {
+        VStack {
+            MyModulesContent(data: ModulesData(userID: userAuth.userID))
         }
     }
 }
