@@ -19,14 +19,20 @@ struct DessertInputStyle: TextFieldStyle {
 struct DessertInput: View {
     var label: String
     var placeholder: String
+    var isPassword: Bool
     
     @Binding var text: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
         Text(label).font(.body)
-        TextField(placeholder, text: $text)
-        .textFieldStyle(DessertInputStyle())
+            if isPassword {
+                SecureField(placeholder, text: $text)
+                .textFieldStyle(DessertInputStyle())
+            } else {
+                TextField(placeholder, text: $text)
+                .textFieldStyle(DessertInputStyle())
+            }
         }
     }
 }
@@ -35,6 +41,6 @@ struct DessertInput_Previews: PreviewProvider {
     @State static var text = ""
     
     static var previews: some View {
-        DessertInput(label: "Username", placeholder: "Input your username", text: $text).padding()
+        DessertInput(label: "Username", placeholder: "Input your username", isPassword: true, text: $text).padding()
     }
 }

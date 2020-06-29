@@ -7,9 +7,9 @@ struct LoginForm: View {
     @Binding var password: String
     
     var body: some View {
-        VStack() {
-        DessertInput(label: "Email", placeholder: "Enter email", text: $email)
-            DessertInput(label: "Password", placeholder: "Enter password", text: $password)
+        VStack(alignment: .leading, spacing: 15) {
+        DessertInput(label: "Email", placeholder: "Enter email", isPassword: false, text: $email)
+            DessertInput(label: "Password", placeholder: "Enter password", isPassword: true, text: $password)
         }.padding(30)
     }
 }
