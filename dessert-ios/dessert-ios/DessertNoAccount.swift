@@ -1,35 +1,35 @@
-//DessertButton.swift created on 28/06/2020.
+//DessertNoAccount.swift created on 29/06/2020.
 
 import SwiftUI
 
-struct DessertButtonStyle: ButtonStyle {
+
+struct DessertNoAccountStyle: ButtonStyle {
     let buttonColor = Color(UIColor(named: "DessertColor")!)
  
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-        .foregroundColor(Color.white)
+        .foregroundColor(buttonColor)
         .padding(15)
-        .background(buttonColor)
     }
 }
 
-struct DessertButton: View {
-    var text: String
+struct DessertNoAccount: View {
     var action: () -> Void
     
     var body: some View {
         Button(action: action) {
-                Text(text)
+                Text("No account?")
+            .underline()
                     .fontWeight(.semibold)
                     .font(.callout)
                     .frame(width: 100, height: 20)
         }
-        .buttonStyle(DessertButtonStyle())
+        .buttonStyle(DessertNoAccountStyle())
     }
 }
 
-struct DessertButton_Previews: PreviewProvider {
+struct DessertNoAccount_Previews: PreviewProvider {
     static var previews: some View {
-        DessertButton(text: "Click Me", action: { print("Hello Dessert") })
+        DessertNoAccount(action: {print("Hello Dessert !")})
     }
 }

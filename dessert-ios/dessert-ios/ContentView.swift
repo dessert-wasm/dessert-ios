@@ -46,13 +46,13 @@ struct ViewRouter : View {
     }
 }
 
-struct NavigationHeader: View {
+struct NavigationTrailing: View {
     let text: String
     
     var body: some View {
         HStack(alignment: .center) {
             Text("Dessert")
-            .font(Font.custom("Pacifico", size: 25))
+            .font(Font.custom("Pacifico", size: 30))
             .foregroundColor(Color(UIColor(named: "DessertColor")!))
         }
     }
@@ -70,7 +70,8 @@ struct ContentView : View {
     var body: some View {
         NavigationView {
             VStack {
-                ViewRouter(item: selectedItem).navigationBarItems(leading: NavigationHeader(text: selectedItem.title))
+                ViewRouter(item: selectedItem).navigationBarItems(trailing: NavigationTrailing(text: "TEST"))
+                    .navigationBarTitle(Text(selectedItem.title))
                 BottomBar(selectedIndex: $selectedIndex, items: items)
             }
         }

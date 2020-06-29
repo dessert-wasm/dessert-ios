@@ -12,6 +12,10 @@ class UserAuth: ObservableObject {
   func login() {
     self.isLoggedin = true
   }
+  
+  func logout() {
+    self.isLoggedin = false
+  }
 
   @Published var isLoggedin = false {
     didSet {

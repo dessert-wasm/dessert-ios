@@ -20,6 +20,14 @@ struct LoginView: View {
         userAuth.login()
     }
     
+    func goToWebView() -> Void {
+        print("Going to web...")
+        
+        if let url = URL(string: "https://www.google.com") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     var body: some View {
         VStack() {
             Text("Dessert")
@@ -29,6 +37,7 @@ struct LoginView: View {
             HStack() {
                 DessertButton(text: "Login", action: login)
             }
+            DessertNoAccount(action: goToWebView)
         }
     }
 }

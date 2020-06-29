@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4421D7C724A9D1880027A682 /* DessertNoAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7C624A9D1880027A682 /* DessertNoAccount.swift */; };
 		44EC949C24A8EC25000A701B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC949B24A8EC25000A701B /* AppDelegate.swift */; };
 		44EC949E24A8EC25000A701B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC949D24A8EC25000A701B /* SceneDelegate.swift */; };
 		44EC94A024A8EC25000A701B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC949F24A8EC25000A701B /* ContentView.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4421D7C624A9D1880027A682 /* DessertNoAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertNoAccount.swift; sourceTree = "<group>"; };
 		44EC949824A8EC25000A701B /* dessert-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dessert-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44EC949B24A8EC25000A701B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44EC949D24A8EC25000A701B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				44EC94D124A902F4000A701B /* DessertInput.swift */,
 				44EC94D524A9245A000A701B /* DessertButton.swift */,
 				44EC94D324A90A07000A701B /* DessertInvertedButton.swift */,
+				4421D7C624A9D1880027A682 /* DessertNoAccount.swift */,
 				44EC94E324A92ADA000A701B /* LoginView.swift */,
 				44EC94EA24A93B02000A701B /* RoutingView.swift */,
 				44EC94EC24A93B11000A701B /* UserAuth.swift */,
@@ -326,6 +329,7 @@
 				44EC94ED24A93B11000A701B /* UserAuth.swift in Sources */,
 				44EC94A024A8EC25000A701B /* ContentView.swift in Sources */,
 				44EC94EB24A93B02000A701B /* RoutingView.swift in Sources */,
+				4421D7C724A9D1880027A682 /* DessertNoAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

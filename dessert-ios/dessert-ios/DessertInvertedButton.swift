@@ -19,11 +19,10 @@ struct DessertInvertedButtonStyle: ButtonStyle {
 
 struct DessertInvertedButton: View {
     var text: String
+    var action: () -> Void
     
     var body: some View {
-        Button(action: {
-            print("Hello Dessert")
-        }) {
+        Button(action: action) {
             HStack {
                 Text(text)
                 Image(systemName: "arrow.right")
@@ -34,7 +33,7 @@ struct DessertInvertedButton: View {
 
 struct DessertInvertedButton_Previews: PreviewProvider {
     static var previews: some View {
-        DessertInvertedButton(text: "Get Started").padding()
+        DessertInvertedButton(text: "Get Started", action: {print("Hello Dessert !")}).padding()
     }
 }
 
