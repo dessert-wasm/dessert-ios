@@ -8,21 +8,21 @@ struct GradientBackgroundStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
         .foregroundColor(Color.white)
-        .padding()
+        .padding(15)
         .background(buttonColor)
     }
 }
 
 struct DessertButton: View {
     var text: String
+    var action: () -> Void
     
     var body: some View {
-        Button(action: {
-            print("Hello Dessert")
-        }) {
+        Button(action: action) {
                 Text(text)
                     .fontWeight(.semibold)
                     .font(.callout)
+                    .frame(width: 100, height: 20)
         }
         .buttonStyle(GradientBackgroundStyle())
     }
@@ -30,6 +30,6 @@ struct DessertButton: View {
 
 struct DessertButton_Previews: PreviewProvider {
     static var previews: some View {
-        DessertButton(text: "Click Me")
+        DessertButton(text: "Click Me", action: { print("Hello Dessert") })
     }
 }

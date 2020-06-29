@@ -13,18 +13,47 @@ struct BasicView: View {
     let item: BottomBarItem
 
     var detailText: String {
-    "\(item.title) Detail"
+        "\(item.title) Detail"
+    }
+
+    var destination: some View {
+        Text(detailText)
+            .navigationBarTitle(Text(detailText))
+    }
+
+    var body: some View {
+        VStack {
+            Spacer()
+            Spacer()
+        }
+    }
 }
 
-var destination: some View {
-    Text(detailText)
-        .navigationBarTitle(Text(detailText))
+struct ViewRouter : View {
+    let item: BottomBarItem
+
+    var body: some View {
+        switch (item.title) {
+        case "Home":
+            return AnyView(HomeView())
+        case "Modules":
+        return AnyView(MyModulesView())
+        case "Profile":
+        return AnyView(ProfileView())
+        default:
+            return AnyView(HomeView())
+        }
+    }
 }
 
-var body: some View {
-    VStack {
-        Spacer()
-        Spacer()
+struct NavigationHeader: View {
+    let text: String
+    
+    var body: some View {
+        HStack(alignment: .center) {
+            Text("Dessert")
+            .font(Font.custom("Pacifico", size: 25))
+            .foregroundColor(Color(UIColor(named: "DessertColor")!))
         }
     }
 }
@@ -35,12 +64,13 @@ struct ContentView : View {
     var selectedItem: BottomBarItem {
         items[selectedIndex]
     }
+    
+   
 
-var body: some View {
+    var body: some View {
         NavigationView {
             VStack {
-                BasicView(item: selectedItem)
-                    .navigationBarTitle(Text(selectedItem.title))
+                ViewRouter(item: selectedItem).navigationBarItems(leading: NavigationHeader(text: selectedItem.title))
                 BottomBar(selectedIndex: $selectedIndex, items: items)
             }
         }
