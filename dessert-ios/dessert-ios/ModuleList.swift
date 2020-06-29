@@ -17,7 +17,7 @@ struct ModuleRow: View {
 }
 
 struct ModuleList: View {
-    let modules = [
+    private let modules = [
         Module(name: "yaml", description: "yaml is here"),
         Module(name: "js-thingy", description: "js things on the way")
     ]

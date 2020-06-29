@@ -2,15 +2,65 @@
 
 import SwiftUI
 
+import URLImage
+
+class ProfileData : ObservableObject {
+    @Published var user: GetUserQuery.Data.User
+
+    init(userID: Int) {
+        print("Gathering user data...")
+        self.user = GetUserQuery.Data.User(
+            id: -1,
+            nickname: "",
+            profilePicUrl: "",
+            tokens: [],
+            modules: GetUserQuery.Data.User.Module()
+        )
+        gatherData()
+    }
+    
+    func gatherData() {
+        let pagination = PaginationQueryInput(includeCount: true, pageNumber: 1, pageSize: 3)
+        let query = GetUserQuery(author: 7, pagination: pagination)
+        Network.shared.apollo.fetch(query: query) {
+            result in
+            switch result {
+            case .success(let graphQLResult):
+                if let user = graphQLResult.data?.user {
+                    print(user.nickname)
+                    self.user = user
+                } else if let errors = graphQLResult.errors {
+                    print(errors)
+                }
+            case .failure(let errors):
+                print(errors)
+            }
+        }
+    }
+}
+
 
 struct ProfileDetails: View {
+    @ObservedObject private var profileData = ProfileData(userID: 7)
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Details").font(.title)
+        VStack(alignment: .center, spacing: 10) {
             
-            Text("Username").font(.body)
-            
-            Text("Joined on 29/06/2020").font(.body)
+            if self.profileData.user.profilePicUrl.count > 0 {
+                URLImage(URL(string: self.profileData.user.profilePicUrl)!, placeholder: Image(systemName: "circle"))
+                    { proxy in
+                    proxy.image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100.0, height: 100.0)
+                        .clipped()
+                    }
+                .frame(width: 100.0, height: 100.0)
+                .border(Color(UIColor(named: "DessertColor")!), width: 4)
+            } else {
+                Text("Invalid Image").font(.footnote)
+            }
+            Text("@" + self.profileData.user.nickname).font(.body).bold()
         }
     }
 }
@@ -40,8 +90,6 @@ struct ProfileView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer()
-            
             ProfileDetails()
             
             Spacer()
@@ -53,7 +101,7 @@ struct ProfileView: View {
             Spacer()
 
         }.padding()
-        /*.background(Color.yellow)*/
+        .background(Color.yellow)
 }
 }
 

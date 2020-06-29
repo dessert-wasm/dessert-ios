@@ -12,10 +12,11 @@
 		4421D7CC24AA39C00027A682 /* ModuleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7CB24AA39BF0027A682 /* ModuleList.swift */; };
 		4421D7CE24AA3CC00027A682 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 4421D7CD24AA3CC00027A682 /* schema.json */; };
 		4421D7D024AA3D590027A682 /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 4421D7CF24AA3D590027A682 /* Queries.graphql */; };
-		4421D7D324AA43350027A682 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7D224AA43350027A682 /* API.swift */; };
 		4421D7D524AA43520027A682 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7D424AA43520027A682 /* Network.swift */; };
+		446F401F24AA732D00E88181 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 446F401E24AA732D00E88181 /* URLImage */; };
 		4472443424AA46F3008FDB9F /* DessertInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC94D124A902F4000A701B /* DessertInput.swift */; };
 		449F489324AA56BC00156802 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F489224AA56BC00156802 /* Const.swift */; };
+		449F489424AA69FF00156802 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7D224AA43350027A682 /* API.swift */; };
 		44EC949C24A8EC25000A701B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC949B24A8EC25000A701B /* AppDelegate.swift */; };
 		44EC949E24A8EC25000A701B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC949D24A8EC25000A701B /* SceneDelegate.swift */; };
 		44EC94A024A8EC25000A701B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC949F24A8EC25000A701B /* ContentView.swift */; };
@@ -93,6 +94,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44EC94CD24A8ED01000A701B /* BottomBar-SwiftUI in Frameworks */,
+				446F401F24AA732D00E88181 /* URLImage in Frameworks */,
 				4421D7CA24AA2F4B0027A682 /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +221,7 @@
 			packageProductDependencies = (
 				44EC94CC24A8ED01000A701B /* BottomBar-SwiftUI */,
 				4421D7C924AA2F4B0027A682 /* Apollo */,
+				446F401E24AA732D00E88181 /* URLImage */,
 			);
 			productName = "dessert-ios";
 			productReference = 44EC949824A8EC25000A701B /* dessert-ios.app */;
@@ -295,6 +298,7 @@
 			packageReferences = (
 				44EC94CB24A8ED01000A701B /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
 				4421D7C824AA2F4B0027A682 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				446F401D24AA732D00E88181 /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = 44EC949924A8EC25000A701B /* Products */;
 			projectDirPath = "";
@@ -366,7 +370,6 @@
 				44EC94D624A9245A000A701B /* DessertButton.swift in Sources */,
 				44EC94E424A92ADA000A701B /* LoginView.swift in Sources */,
 				4421D7CC24AA39C00027A682 /* ModuleList.swift in Sources */,
-				4421D7D324AA43350027A682 /* API.swift in Sources */,
 				44EC94EF24A944D3000A701B /* ProfileView.swift in Sources */,
 				449F489324AA56BC00156802 /* Const.swift in Sources */,
 				44EC949C24A8EC25000A701B /* AppDelegate.swift in Sources */,
@@ -378,6 +381,7 @@
 				44EC94A024A8EC25000A701B /* ContentView.swift in Sources */,
 				44EC94EB24A93B02000A701B /* RoutingView.swift in Sources */,
 				4421D7D524AA43520027A682 /* Network.swift in Sources */,
+				449F489424AA69FF00156802 /* API.swift in Sources */,
 				4421D7C724A9D1880027A682 /* DessertNoAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,6 +711,14 @@
 				minimumVersion = 0.28.0;
 			};
 		};
+		446F401D24AA732D00E88181 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		44EC94CB24A8ED01000A701B /* XCRemoteSwiftPackageReference "bottombar-swiftui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/smartvipere75/bottombar-swiftui";
@@ -722,6 +734,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4421D7C824AA2F4B0027A682 /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = Apollo;
+		};
+		446F401E24AA732D00E88181 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 446F401D24AA732D00E88181 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
 		};
 		44EC94CC24A8ED01000A701B /* BottomBar-SwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
