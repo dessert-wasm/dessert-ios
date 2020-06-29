@@ -20,17 +20,21 @@ struct DessertInput: View {
     var label: String
     var placeholder: String
     
+    @Binding var text: String
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 7) {
         Text(label).font(.body)
-        TextField(placeholder, text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+        TextField(placeholder, text: $text)
         .textFieldStyle(DessertInputStyle())
         }
     }
 }
 
 struct DessertInput_Previews: PreviewProvider {
+    @State static var text = ""
+    
     static var previews: some View {
-        DessertInput(label: "Username", placeholder: "Input your username").padding()
+        DessertInput(label: "Username", placeholder: "Input your username", text: $text).padding()
     }
 }

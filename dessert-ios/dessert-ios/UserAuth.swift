@@ -16,7 +16,12 @@ class UserAuth: ObservableObject {
   func logout() {
     self.isLoggedin = false
   }
-
+    
+    func setUserID(userID: Int) {
+        self.userID = userID
+    }
+    
+  @Published var userID = -1
   @Published var isLoggedin = false {
     didSet {
       didChange.send(self)

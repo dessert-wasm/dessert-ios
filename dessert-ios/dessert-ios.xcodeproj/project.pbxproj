@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4421D7C724A9D1880027A682 /* DessertNoAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7C624A9D1880027A682 /* DessertNoAccount.swift */; };
+		4421D7CA24AA2F4B0027A682 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 4421D7C924AA2F4B0027A682 /* Apollo */; };
+		4421D7CC24AA39C00027A682 /* ModuleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7CB24AA39BF0027A682 /* ModuleList.swift */; };
+		4421D7CE24AA3CC00027A682 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 4421D7CD24AA3CC00027A682 /* schema.json */; };
+		4421D7D024AA3D590027A682 /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 4421D7CF24AA3D590027A682 /* Queries.graphql */; };
+		4421D7D324AA43350027A682 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7D224AA43350027A682 /* API.swift */; };
+		4421D7D524AA43520027A682 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7D424AA43520027A682 /* Network.swift */; };
+		4472443424AA46F3008FDB9F /* DessertInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC94D124A902F4000A701B /* DessertInput.swift */; };
 		44EC949C24A8EC25000A701B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC949B24A8EC25000A701B /* AppDelegate.swift */; };
 		44EC949E24A8EC25000A701B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC949D24A8EC25000A701B /* SceneDelegate.swift */; };
 		44EC94A024A8EC25000A701B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC949F24A8EC25000A701B /* ContentView.swift */; };
@@ -17,7 +24,6 @@
 		44EC94B324A8EC29000A701B /* dessert_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC94B224A8EC29000A701B /* dessert_iosTests.swift */; };
 		44EC94BE24A8EC29000A701B /* dessert_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC94BD24A8EC29000A701B /* dessert_iosUITests.swift */; };
 		44EC94CD24A8ED01000A701B /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 44EC94CC24A8ED01000A701B /* BottomBar-SwiftUI */; };
-		44EC94D224A902F4000A701B /* DessertInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC94D124A902F4000A701B /* DessertInput.swift */; };
 		44EC94D424A90A07000A701B /* DessertInvertedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC94D324A90A07000A701B /* DessertInvertedButton.swift */; };
 		44EC94D624A9245A000A701B /* DessertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC94D524A9245A000A701B /* DessertButton.swift */; };
 		44EC94E424A92ADA000A701B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC94E324A92ADA000A701B /* LoginView.swift */; };
@@ -48,6 +54,11 @@
 
 /* Begin PBXFileReference section */
 		4421D7C624A9D1880027A682 /* DessertNoAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertNoAccount.swift; sourceTree = "<group>"; };
+		4421D7CB24AA39BF0027A682 /* ModuleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleList.swift; sourceTree = "<group>"; };
+		4421D7CD24AA3CC00027A682 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		4421D7CF24AA3D590027A682 /* Queries.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Queries.graphql; sourceTree = "<group>"; };
+		4421D7D224AA43350027A682 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		4421D7D424AA43520027A682 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		44EC949824A8EC25000A701B /* dessert-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dessert-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44EC949B24A8EC25000A701B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44EC949D24A8EC25000A701B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44EC94CD24A8ED01000A701B /* BottomBar-SwiftUI in Frameworks */,
+				4421D7CA24AA2F4B0027A682 /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +135,9 @@
 		44EC949A24A8EC25000A701B /* dessert-ios */ = {
 			isa = PBXGroup;
 			children = (
+				4421D7D224AA43350027A682 /* API.swift */,
+				4421D7CD24AA3CC00027A682 /* schema.json */,
+				4421D7CF24AA3D590027A682 /* Queries.graphql */,
 				44EC94E724A9309F000A701B /* fonts */,
 				44EC949B24A8EC25000A701B /* AppDelegate.swift */,
 				44EC949D24A8EC25000A701B /* SceneDelegate.swift */,
@@ -136,9 +151,11 @@
 				44EC94D324A90A07000A701B /* DessertInvertedButton.swift */,
 				4421D7C624A9D1880027A682 /* DessertNoAccount.swift */,
 				44EC94E324A92ADA000A701B /* LoginView.swift */,
+				4421D7D424AA43520027A682 /* Network.swift */,
 				44EC94EA24A93B02000A701B /* RoutingView.swift */,
 				44EC94EC24A93B11000A701B /* UserAuth.swift */,
 				44EC94EE24A944D3000A701B /* ProfileView.swift */,
+				4421D7CB24AA39BF0027A682 /* ModuleList.swift */,
 				44EC94F024A94E65000A701B /* HomeView.swift */,
 				44EC94F224A94E8C000A701B /* MyModulesView.swift */,
 			);
@@ -186,6 +203,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44EC94C224A8EC29000A701B /* Build configuration list for PBXNativeTarget "dessert-ios" */;
 			buildPhases = (
+				4421D7D124AA3DCF0027A682 /* Generate API Apollo */,
 				44EC949424A8EC25000A701B /* Sources */,
 				44EC949524A8EC25000A701B /* Frameworks */,
 				44EC949624A8EC25000A701B /* Resources */,
@@ -197,6 +215,7 @@
 			name = "dessert-ios";
 			packageProductDependencies = (
 				44EC94CC24A8ED01000A701B /* BottomBar-SwiftUI */,
+				4421D7C924AA2F4B0027A682 /* Apollo */,
 			);
 			productName = "dessert-ios";
 			productReference = 44EC949824A8EC25000A701B /* dessert-ios.app */;
@@ -272,6 +291,7 @@
 			mainGroup = 44EC948F24A8EC25000A701B;
 			packageReferences = (
 				44EC94CB24A8ED01000A701B /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
+				4421D7C824AA2F4B0027A682 /* XCRemoteSwiftPackageReference "apollo-ios" */,
 			);
 			productRefGroup = 44EC949924A8EC25000A701B /* Products */;
 			projectDirPath = "";
@@ -289,7 +309,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4421D7D024AA3D590027A682 /* Queries.graphql in Resources */,
 				44EC94A824A8EC29000A701B /* LaunchScreen.storyboard in Resources */,
+				4421D7CE24AA3CC00027A682 /* schema.json in Resources */,
 				44EC94A524A8EC29000A701B /* Preview Assets.xcassets in Resources */,
 				44EC94A224A8EC29000A701B /* Assets.xcassets in Resources */,
 				44EC94E924A930A9000A701B /* Pacifico-Regular.ttf in Resources */,
@@ -312,6 +334,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4421D7D124AA3DCF0027A682 /* Generate API Apollo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate API Apollo";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellScript = "/Users/pistachio/dessert-ios/dessert-ios/dessert-ios/apollo_script.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		44EC949424A8EC25000A701B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -320,15 +362,18 @@
 				44EC94F324A94E8C000A701B /* MyModulesView.swift in Sources */,
 				44EC94D624A9245A000A701B /* DessertButton.swift in Sources */,
 				44EC94E424A92ADA000A701B /* LoginView.swift in Sources */,
+				4421D7CC24AA39C00027A682 /* ModuleList.swift in Sources */,
+				4421D7D324AA43350027A682 /* API.swift in Sources */,
 				44EC94EF24A944D3000A701B /* ProfileView.swift in Sources */,
-				44EC94D224A902F4000A701B /* DessertInput.swift in Sources */,
 				44EC949C24A8EC25000A701B /* AppDelegate.swift in Sources */,
+				4472443424AA46F3008FDB9F /* DessertInput.swift in Sources */,
 				44EC94F124A94E65000A701B /* HomeView.swift in Sources */,
 				44EC94D424A90A07000A701B /* DessertInvertedButton.swift in Sources */,
 				44EC949E24A8EC25000A701B /* SceneDelegate.swift in Sources */,
 				44EC94ED24A93B11000A701B /* UserAuth.swift in Sources */,
 				44EC94A024A8EC25000A701B /* ContentView.swift in Sources */,
 				44EC94EB24A93B02000A701B /* RoutingView.swift in Sources */,
+				4421D7D524AA43520027A682 /* Network.swift in Sources */,
 				4421D7C724A9D1880027A682 /* DessertNoAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,6 +695,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4421D7C824AA2F4B0027A682 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.28.0;
+			};
+		};
 		44EC94CB24A8ED01000A701B /* XCRemoteSwiftPackageReference "bottombar-swiftui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/smartvipere75/bottombar-swiftui";
@@ -661,6 +714,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4421D7C924AA2F4B0027A682 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4421D7C824AA2F4B0027A682 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
 		44EC94CC24A8ED01000A701B /* BottomBar-SwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 44EC94CB24A8ED01000A701B /* XCRemoteSwiftPackageReference "bottombar-swiftui" */;

@@ -1,0 +1,40 @@
+mutation login($email: String!, $password: String!, $remember: Boolean!){
+    login(email: $email, password: $password, remember: $remember){
+        id
+    }
+}
+
+mutation logout {
+    logout
+}
+
+query getUser($author: Int!, $pagination: PaginationQueryInput!) {
+    user(id: $author) {
+        id
+        nickname
+        profilePicUrl
+        tokens {
+            id
+            token
+            description
+        }
+        modules(pagination: $pagination) {
+            totalRecords
+            result {
+                id
+                name
+                description
+                publishedDateTime
+                author {
+                    id
+                    nickname
+                    profilePicUrl
+                }
+                tags {
+                    id
+                    name
+                }
+            }
+        }
+    }
+}
