@@ -61,6 +61,8 @@ struct ProfileDetails: View {
                 Text("Invalid Image").font(.footnote)
             }
             Text("@" + self.profileData.user.nickname).font(.body).bold()
+            
+            TokensView(tokens: self.profileData.user.tokens)
         }
     }
 }
@@ -89,19 +91,17 @@ struct ProfileView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             ProfileDetails()
             
             Spacer()
                 
             DessertInvertedButton(text: "Logout", action: logout).alert(isPresented: $showingAlert, content: {
                 Alert(title: Text(GraphQL.SERVER_ERROR), message: Text(GraphQL.CONTACT_US))
-            })
-            
-            Spacer()
+                }).padding()
 
         }.padding()
-        .background(Color.yellow)
+        /*.background(Color.yellow)*/
 }
 }
 
