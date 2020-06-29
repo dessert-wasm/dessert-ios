@@ -18,9 +18,24 @@ struct ProfileDetails: View {
 struct ProfileView: View {
     @EnvironmentObject var userAuth: UserAuth
     
+    @State private var showingAlert = false
+    
     func logout() -> Void {
         print("Logout logic here...")
-        userAuth.logout()
+        
+        let mutation = LogoutMutation()
+        
+        Network.shared.apollo.perform(mutation: mutation){
+        result in
+            switch result {
+            case .success(let graphQLResult):
+                print(graphQLResult)
+                self.userAuth.logout()
+            case .failure(let errors):
+                print("Errors", errors)
+                self.showingAlert = true;
+            }
+        }
     }
     
     var body: some View {
@@ -31,7 +46,9 @@ struct ProfileView: View {
             
             Spacer()
                 
-            DessertInvertedButton(text: "Logout", action: logout)
+            DessertInvertedButton(text: "Logout", action: logout).alert(isPresented: $showingAlert, content: {
+                Alert(title: Text(GraphQL.SERVER_ERROR), message: Text(GraphQL.CONTACT_US))
+            })
             
             Spacer()
 

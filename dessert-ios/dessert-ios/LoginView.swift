@@ -29,8 +29,8 @@ struct LoginView: View {
         print("password", password)
         
         if (email == "" || password == "") {
-            self.titleAlert = "Ooops..."
-            self.messageAlert = "You must provide an Email and a Password."
+            self.titleAlert = Login.OOPS
+            self.messageAlert = Login.PROVIDE_CREDS
             self.showingAlert = true
             return
         }
@@ -48,15 +48,15 @@ struct LoginView: View {
                 } else if let errors = graphQLResult.errors {
                     // fail graphQL
                     print("graphQL fail", errors)
-                    self.titleAlert = "Invalid Credentials"
-                    self.messageAlert = "Please check your credentials"
+                    self.titleAlert = Login.INVALID_CREDS
+                    self.messageAlert = Login.CHECK_CREDS
                     self.showingAlert = true;
                 }
             case .failure(let error):
-                self.titleAlert = "Server error :("
-                self.messageAlert = "Contact us if the error persists."
-                self.showingAlert = true;
                 print(error)
+                self.titleAlert = GraphQL.SERVER_ERROR
+                self.messageAlert = GraphQL.CONTACT_US
+                self.showingAlert = true;
             }
         }
     }
