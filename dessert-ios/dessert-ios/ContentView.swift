@@ -5,7 +5,7 @@ import BottomBar_SwiftUI
 
 let items: [BottomBarItem] = [
     BottomBarItem(icon: "house.fill", title: "Home", color: Color(UIColor(named: "DessertColor")!)),
-    BottomBarItem(icon: "magnifyingglass", title: "Modules", color: Color(UIColor(named: "ModulesColor")!)),
+    BottomBarItem(icon: "magnifyingglass", title: "My Modules", color: Color(UIColor(named: "ModulesColor")!)),
     BottomBarItem(icon: "person.fill", title: "Profile", color: Color(UIColor(named: "ProfileColor")!))
 ]
 
@@ -36,7 +36,7 @@ struct ViewRouter : View {
         switch (item.title) {
         case "Home":
             return AnyView(HomeView())
-        case "Modules":
+        case "My Modules":
         return AnyView(MyModulesView())
         case "Profile":
         return AnyView(ProfileView())

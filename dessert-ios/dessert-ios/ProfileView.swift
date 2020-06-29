@@ -62,7 +62,7 @@ struct ProfileDetails: View {
             }
             Text("@" + self.profileData.user.nickname).font(.body).bold()
             
-            TokensView(tokens: self.profileData.user.tokens)
+            TokensView(tokens: self.profileData.user.tokens).padding()
         }
     }
 }
