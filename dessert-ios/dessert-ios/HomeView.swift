@@ -5,9 +5,9 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
            VStack {
-               Spacer()
-               Text("Home View :o")
-               Spacer()
+                Spacer()
+                SearchContent()
+                Spacer()
            }
     }
 }

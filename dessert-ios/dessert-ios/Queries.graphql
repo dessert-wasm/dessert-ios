@@ -8,6 +8,26 @@ mutation logout {
     logout
 }
 
+
+query search($query: String!, $pagination: PaginationQueryInput!) {
+  search(query: $query, pagination: $pagination) {
+    pageNumber
+    pageSize
+    result {
+      id
+      name
+      author {nickname}
+      isCore
+      publishedDateTime
+      tags {name}
+      githubLink
+      description
+    }
+    totalPages
+    totalRecords
+  }
+}
+
 query getUser($author: Int!, $pagination: PaginationQueryInput!) {
     user(id: $author) {
         id

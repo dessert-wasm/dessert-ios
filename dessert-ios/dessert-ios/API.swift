@@ -181,6 +181,338 @@ public final class LogoutMutation: GraphQLMutation {
   }
 }
 
+public final class SearchQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query search($query: String!, $pagination: PaginationQueryInput!) {
+      search(query: $query, pagination: $pagination) {
+        __typename
+        pageNumber
+        pageSize
+        result {
+          __typename
+          id
+          name
+          author {
+            __typename
+            nickname
+          }
+          isCore
+          publishedDateTime
+          tags {
+            __typename
+            name
+          }
+          githubLink
+          description
+        }
+        totalPages
+        totalRecords
+      }
+    }
+    """
+
+  public let operationName: String = "search"
+
+  public var query: String
+  public var pagination: PaginationQueryInput
+
+  public init(query: String, pagination: PaginationQueryInput) {
+    self.query = query
+    self.pagination = pagination
+  }
+
+  public var variables: GraphQLMap? {
+    return ["query": query, "pagination": pagination]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("search", arguments: ["query": GraphQLVariable("query"), "pagination": GraphQLVariable("pagination")], type: .nonNull(.object(Search.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(search: Search) {
+      self.init(unsafeResultMap: ["__typename": "Query", "search": search.resultMap])
+    }
+
+    public var search: Search {
+      get {
+        return Search(unsafeResultMap: resultMap["search"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "search")
+      }
+    }
+
+    public struct Search: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["PaginatedResultOfModule"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("pageNumber", type: .nonNull(.scalar(Int.self))),
+        GraphQLField("pageSize", type: .nonNull(.scalar(Int.self))),
+        GraphQLField("result", type: .list(.object(Result.selections))),
+        GraphQLField("totalPages", type: .scalar(Int.self)),
+        GraphQLField("totalRecords", type: .scalar(Int.self)),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(pageNumber: Int, pageSize: Int, result: [Result?]? = nil, totalPages: Int? = nil, totalRecords: Int? = nil) {
+        self.init(unsafeResultMap: ["__typename": "PaginatedResultOfModule", "pageNumber": pageNumber, "pageSize": pageSize, "result": result.flatMap { (value: [Result?]) -> [ResultMap?] in value.map { (value: Result?) -> ResultMap? in value.flatMap { (value: Result) -> ResultMap in value.resultMap } } }, "totalPages": totalPages, "totalRecords": totalRecords])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var pageNumber: Int {
+        get {
+          return resultMap["pageNumber"]! as! Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "pageNumber")
+        }
+      }
+
+      public var pageSize: Int {
+        get {
+          return resultMap["pageSize"]! as! Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "pageSize")
+        }
+      }
+
+      public var result: [Result?]? {
+        get {
+          return (resultMap["result"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [Result?] in value.map { (value: ResultMap?) -> Result? in value.flatMap { (value: ResultMap) -> Result in Result(unsafeResultMap: value) } } }
+        }
+        set {
+          resultMap.updateValue(newValue.flatMap { (value: [Result?]) -> [ResultMap?] in value.map { (value: Result?) -> ResultMap? in value.flatMap { (value: Result) -> ResultMap in value.resultMap } } }, forKey: "result")
+        }
+      }
+
+      public var totalPages: Int? {
+        get {
+          return resultMap["totalPages"] as? Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "totalPages")
+        }
+      }
+
+      public var totalRecords: Int? {
+        get {
+          return resultMap["totalRecords"] as? Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "totalRecords")
+        }
+      }
+
+      public struct Result: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Module"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("author", type: .nonNull(.object(Author.selections))),
+          GraphQLField("isCore", type: .nonNull(.scalar(Bool.self))),
+          GraphQLField("publishedDateTime", type: .nonNull(.scalar(String.self))),
+          GraphQLField("tags", type: .nonNull(.list(.nonNull(.object(Tag.selections))))),
+          GraphQLField("githubLink", type: .scalar(String.self)),
+          GraphQLField("description", type: .nonNull(.scalar(String.self))),
+        ]
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: Int, name: String, author: Author, isCore: Bool, publishedDateTime: String, tags: [Tag], githubLink: String? = nil, description: String) {
+          self.init(unsafeResultMap: ["__typename": "Module", "id": id, "name": name, "author": author.resultMap, "isCore": isCore, "publishedDateTime": publishedDateTime, "tags": tags.map { (value: Tag) -> ResultMap in value.resultMap }, "githubLink": githubLink, "description": description])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: Int {
+          get {
+            return resultMap["id"]! as! Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var name: String {
+          get {
+            return resultMap["name"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        public var author: Author {
+          get {
+            return Author(unsafeResultMap: resultMap["author"]! as! ResultMap)
+          }
+          set {
+            resultMap.updateValue(newValue.resultMap, forKey: "author")
+          }
+        }
+
+        public var isCore: Bool {
+          get {
+            return resultMap["isCore"]! as! Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "isCore")
+          }
+        }
+
+        public var publishedDateTime: String {
+          get {
+            return resultMap["publishedDateTime"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "publishedDateTime")
+          }
+        }
+
+        public var tags: [Tag] {
+          get {
+            return (resultMap["tags"] as! [ResultMap]).map { (value: ResultMap) -> Tag in Tag(unsafeResultMap: value) }
+          }
+          set {
+            resultMap.updateValue(newValue.map { (value: Tag) -> ResultMap in value.resultMap }, forKey: "tags")
+          }
+        }
+
+        public var githubLink: String? {
+          get {
+            return resultMap["githubLink"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "githubLink")
+          }
+        }
+
+        public var description: String {
+          get {
+            return resultMap["description"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "description")
+          }
+        }
+
+        public struct Author: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["Account"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
+          ]
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(nickname: String) {
+            self.init(unsafeResultMap: ["__typename": "Account", "nickname": nickname])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var nickname: String {
+            get {
+              return resultMap["nickname"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "nickname")
+            }
+          }
+        }
+
+        public struct Tag: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["ModuleTag"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          ]
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(name: String) {
+            self.init(unsafeResultMap: ["__typename": "ModuleTag", "name": name])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var name: String {
+            get {
+              return resultMap["name"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "name")
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 public final class GetUserQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =

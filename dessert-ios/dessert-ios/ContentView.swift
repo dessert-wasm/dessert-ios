@@ -6,7 +6,8 @@ import BottomBar_SwiftUI
 let items: [BottomBarItem] = [
     BottomBarItem(icon: "house.fill", title: "Home", color: Color(UIColor(named: "DessertColor")!)),
     BottomBarItem(icon: "magnifyingglass", title: "My Modules", color: Color(UIColor(named: "ModulesColor")!)),
-    BottomBarItem(icon: "person.fill", title: "Profile", color: Color(UIColor(named: "ProfileColor")!))
+    BottomBarItem(icon: "person.fill", title: "Profile", color: Color(UIColor(named: "ProfileColor")!)),
+     BottomBarItem(icon: "book.fill", title: "Docs", color: Color(UIColor(named: "DocsColor")!))
 ]
 
 struct BasicView: View {
@@ -40,6 +41,8 @@ struct ViewRouter : View {
         return AnyView(MyModulesView())
         case "Profile":
         return AnyView(ProfileView())
+        case "Docs":
+        return AnyView(DocsView())
         default:
             return AnyView(HomeView())
         }
@@ -65,8 +68,6 @@ struct ContentView : View {
         items[selectedIndex]
     }
     
-   
-
     var body: some View {
         NavigationView {
             VStack {

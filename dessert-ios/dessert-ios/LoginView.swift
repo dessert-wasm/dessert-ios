@@ -20,8 +20,8 @@ struct LoginView: View {
     @State private var showingAlert = false
     @State private var titleAlert: String = "Error"
     @State private var messageAlert: String = ""
-    @State private var email: String = "test@test.test"
-    @State private var password: String = "test"
+    @State private var email: String = "user@provider.com"
+    @State private var password: String = "12345"
     
     func login() -> Void {
         print("Login logic here...")
@@ -64,7 +64,7 @@ struct LoginView: View {
     func goToWebView() -> Void {
         print("Going to web...")
         
-        if let url = URL(string: "https://dessert.dev/") {
+        if let url = URL(string: "https://develop.dessert.dev/sign") {
             UIApplication.shared.open(url)
         }
     }

@@ -13,9 +13,16 @@
 		4421D7CE24AA3CC00027A682 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 4421D7CD24AA3CC00027A682 /* schema.json */; };
 		4421D7D024AA3D590027A682 /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 4421D7CF24AA3D590027A682 /* Queries.graphql */; };
 		4421D7D524AA43520027A682 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7D424AA43520027A682 /* Network.swift */; };
+		445B88692507F1FC00DDD3F0 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B88652507F1FC00DDD3F0 /* SearchResult.swift */; };
+		445B886A2507F1FC00DDD3F0 /* SearchSubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B88662507F1FC00DDD3F0 /* SearchSubs.swift */; };
+		445B886B2507F1FC00DDD3F0 /* SearchContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B88672507F1FC00DDD3F0 /* SearchContent.swift */; };
+		445B886C2507F1FC00DDD3F0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B88682507F1FC00DDD3F0 /* SearchBar.swift */; };
+		445B886E2509157100DDD3F0 /* ModuleIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B886D2509157000DDD3F0 /* ModuleIDView.swift */; };
+		445B88702509177800DDD3F0 /* Webview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445B886F2509177800DDD3F0 /* Webview.swift */; };
 		446F401F24AA732D00E88181 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 446F401E24AA732D00E88181 /* URLImage */; };
 		446F402124AA7B1C00E88181 /* TokensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446F402024AA7B1C00E88181 /* TokensView.swift */; };
 		4472443424AA46F3008FDB9F /* DessertInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC94D124A902F4000A701B /* DessertInput.swift */; };
+		447C4D2C2507E65A00C3FD97 /* DocsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447C4D2B2507E65A00C3FD97 /* DocsView.swift */; };
 		449F489324AA56BC00156802 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F489224AA56BC00156802 /* Const.swift */; };
 		449F489424AA69FF00156802 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4421D7D224AA43350027A682 /* API.swift */; };
 		44EC949C24A8EC25000A701B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC949B24A8EC25000A701B /* AppDelegate.swift */; };
@@ -62,7 +69,14 @@
 		4421D7CF24AA3D590027A682 /* Queries.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Queries.graphql; sourceTree = "<group>"; };
 		4421D7D224AA43350027A682 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4421D7D424AA43520027A682 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		445B88652507F1FC00DDD3F0 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResult.swift; path = ../../../Redditor/Redditor/Redditor/SearchResult.swift; sourceTree = "<group>"; };
+		445B88662507F1FC00DDD3F0 /* SearchSubs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchSubs.swift; path = ../../../Redditor/Redditor/Redditor/SearchSubs.swift; sourceTree = "<group>"; };
+		445B88672507F1FC00DDD3F0 /* SearchContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchContent.swift; path = ../../../Redditor/Redditor/Redditor/SearchContent.swift; sourceTree = "<group>"; };
+		445B88682507F1FC00DDD3F0 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchBar.swift; path = ../../../Redditor/Redditor/Redditor/SearchBar.swift; sourceTree = "<group>"; };
+		445B886D2509157000DDD3F0 /* ModuleIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleIDView.swift; sourceTree = "<group>"; };
+		445B886F2509177800DDD3F0 /* Webview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webview.swift; sourceTree = "<group>"; };
 		446F402024AA7B1C00E88181 /* TokensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensView.swift; sourceTree = "<group>"; };
+		447C4D2B2507E65A00C3FD97 /* DocsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocsView.swift; sourceTree = "<group>"; };
 		449F489224AA56BC00156802 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		44EC949824A8EC25000A701B /* dessert-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dessert-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44EC949B24A8EC25000A701B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +155,10 @@
 		44EC949A24A8EC25000A701B /* dessert-ios */ = {
 			isa = PBXGroup;
 			children = (
+				445B88682507F1FC00DDD3F0 /* SearchBar.swift */,
+				445B88672507F1FC00DDD3F0 /* SearchContent.swift */,
+				445B88652507F1FC00DDD3F0 /* SearchResult.swift */,
+				445B88662507F1FC00DDD3F0 /* SearchSubs.swift */,
 				449F489224AA56BC00156802 /* Const.swift */,
 				4421D7D224AA43350027A682 /* API.swift */,
 				4421D7CD24AA3CC00027A682 /* schema.json */,
@@ -166,6 +184,9 @@
 				44EC94F024A94E65000A701B /* HomeView.swift */,
 				4421D7CB24AA39BF0027A682 /* ModuleList.swift */,
 				44EC94F224A94E8C000A701B /* MyModulesView.swift */,
+				447C4D2B2507E65A00C3FD97 /* DocsView.swift */,
+				445B886D2509157000DDD3F0 /* ModuleIDView.swift */,
+				445B886F2509177800DDD3F0 /* Webview.swift */,
 			);
 			path = "dessert-ios";
 			sourceTree = "<group>";
@@ -371,9 +392,14 @@
 			files = (
 				44EC94F324A94E8C000A701B /* MyModulesView.swift in Sources */,
 				44EC94D624A9245A000A701B /* DessertButton.swift in Sources */,
+				445B88692507F1FC00DDD3F0 /* SearchResult.swift in Sources */,
+				445B886B2507F1FC00DDD3F0 /* SearchContent.swift in Sources */,
+				445B886A2507F1FC00DDD3F0 /* SearchSubs.swift in Sources */,
 				44EC94E424A92ADA000A701B /* LoginView.swift in Sources */,
 				4421D7CC24AA39C00027A682 /* ModuleList.swift in Sources */,
+				445B88702509177800DDD3F0 /* Webview.swift in Sources */,
 				44EC94EF24A944D3000A701B /* ProfileView.swift in Sources */,
+				447C4D2C2507E65A00C3FD97 /* DocsView.swift in Sources */,
 				449F489324AA56BC00156802 /* Const.swift in Sources */,
 				44EC949C24A8EC25000A701B /* AppDelegate.swift in Sources */,
 				4472443424AA46F3008FDB9F /* DessertInput.swift in Sources */,
@@ -381,8 +407,10 @@
 				44EC94F124A94E65000A701B /* HomeView.swift in Sources */,
 				44EC94D424A90A07000A701B /* DessertInvertedButton.swift in Sources */,
 				44EC949E24A8EC25000A701B /* SceneDelegate.swift in Sources */,
+				445B886C2507F1FC00DDD3F0 /* SearchBar.swift in Sources */,
 				44EC94ED24A93B11000A701B /* UserAuth.swift in Sources */,
 				44EC94A024A8EC25000A701B /* ContentView.swift in Sources */,
+				445B886E2509157100DDD3F0 /* ModuleIDView.swift in Sources */,
 				44EC94EB24A93B02000A701B /* RoutingView.swift in Sources */,
 				4421D7D524AA43520027A682 /* Network.swift in Sources */,
 				449F489424AA69FF00156802 /* API.swift in Sources */,
