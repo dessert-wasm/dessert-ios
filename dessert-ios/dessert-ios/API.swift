@@ -538,6 +538,8 @@ public final class GetUserQuery: GraphQLQuery {
             name
             description
             publishedDateTime
+            githubLink
+            isCore
             author {
               __typename
               id
@@ -783,6 +785,8 @@ public final class GetUserQuery: GraphQLQuery {
             GraphQLField("name", type: .nonNull(.scalar(String.self))),
             GraphQLField("description", type: .nonNull(.scalar(String.self))),
             GraphQLField("publishedDateTime", type: .nonNull(.scalar(String.self))),
+            GraphQLField("githubLink", type: .scalar(String.self)),
+            GraphQLField("isCore", type: .nonNull(.scalar(Bool.self))),
             GraphQLField("author", type: .nonNull(.object(Author.selections))),
             GraphQLField("tags", type: .nonNull(.list(.nonNull(.object(Tag.selections))))),
           ]
@@ -793,8 +797,8 @@ public final class GetUserQuery: GraphQLQuery {
             self.resultMap = unsafeResultMap
           }
 
-          public init(id: Int, name: String, description: String, publishedDateTime: String, author: Author, tags: [Tag]) {
-            self.init(unsafeResultMap: ["__typename": "Module", "id": id, "name": name, "description": description, "publishedDateTime": publishedDateTime, "author": author.resultMap, "tags": tags.map { (value: Tag) -> ResultMap in value.resultMap }])
+          public init(id: Int, name: String, description: String, publishedDateTime: String, githubLink: String? = nil, isCore: Bool, author: Author, tags: [Tag]) {
+            self.init(unsafeResultMap: ["__typename": "Module", "id": id, "name": name, "description": description, "publishedDateTime": publishedDateTime, "githubLink": githubLink, "isCore": isCore, "author": author.resultMap, "tags": tags.map { (value: Tag) -> ResultMap in value.resultMap }])
           }
 
           public var __typename: String {
@@ -839,6 +843,24 @@ public final class GetUserQuery: GraphQLQuery {
             }
             set {
               resultMap.updateValue(newValue, forKey: "publishedDateTime")
+            }
+          }
+
+          public var githubLink: String? {
+            get {
+              return resultMap["githubLink"] as? String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "githubLink")
+            }
+          }
+
+          public var isCore: Bool {
+            get {
+              return resultMap["isCore"]! as! Bool
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "isCore")
             }
           }
 
@@ -964,6 +986,209 @@ public final class GetUserQuery: GraphQLQuery {
             }
           }
         }
+      }
+    }
+  }
+}
+
+public struct FragResult: GraphQLFragment {
+  /// The raw GraphQL definition of this fragment.
+  public static let fragmentDefinition: String =
+    """
+    fragment FragResult on Module {
+      __typename
+      id
+      name
+      author {
+        __typename
+        nickname
+      }
+      isCore
+      publishedDateTime
+      tags {
+        __typename
+        name
+      }
+      githubLink
+      description
+    }
+    """
+
+  public static let possibleTypes: [String] = ["Module"]
+
+  public static let selections: [GraphQLSelection] = [
+    GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+    GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+    GraphQLField("name", type: .nonNull(.scalar(String.self))),
+    GraphQLField("author", type: .nonNull(.object(Author.selections))),
+    GraphQLField("isCore", type: .nonNull(.scalar(Bool.self))),
+    GraphQLField("publishedDateTime", type: .nonNull(.scalar(String.self))),
+    GraphQLField("tags", type: .nonNull(.list(.nonNull(.object(Tag.selections))))),
+    GraphQLField("githubLink", type: .scalar(String.self)),
+    GraphQLField("description", type: .nonNull(.scalar(String.self))),
+  ]
+
+  public private(set) var resultMap: ResultMap
+
+  public init(unsafeResultMap: ResultMap) {
+    self.resultMap = unsafeResultMap
+  }
+
+  public init(id: Int, name: String, author: Author, isCore: Bool, publishedDateTime: String, tags: [Tag], githubLink: String? = nil, description: String) {
+    self.init(unsafeResultMap: ["__typename": "Module", "id": id, "name": name, "author": author.resultMap, "isCore": isCore, "publishedDateTime": publishedDateTime, "tags": tags.map { (value: Tag) -> ResultMap in value.resultMap }, "githubLink": githubLink, "description": description])
+  }
+
+  public var __typename: String {
+    get {
+      return resultMap["__typename"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "__typename")
+    }
+  }
+
+  public var id: Int {
+    get {
+      return resultMap["id"]! as! Int
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var name: String {
+    get {
+      return resultMap["name"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  public var author: Author {
+    get {
+      return Author(unsafeResultMap: resultMap["author"]! as! ResultMap)
+    }
+    set {
+      resultMap.updateValue(newValue.resultMap, forKey: "author")
+    }
+  }
+
+  public var isCore: Bool {
+    get {
+      return resultMap["isCore"]! as! Bool
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "isCore")
+    }
+  }
+
+  public var publishedDateTime: String {
+    get {
+      return resultMap["publishedDateTime"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "publishedDateTime")
+    }
+  }
+
+  public var tags: [Tag] {
+    get {
+      return (resultMap["tags"] as! [ResultMap]).map { (value: ResultMap) -> Tag in Tag(unsafeResultMap: value) }
+    }
+    set {
+      resultMap.updateValue(newValue.map { (value: Tag) -> ResultMap in value.resultMap }, forKey: "tags")
+    }
+  }
+
+  public var githubLink: String? {
+    get {
+      return resultMap["githubLink"] as? String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "githubLink")
+    }
+  }
+
+  public var description: String {
+    get {
+      return resultMap["description"]! as! String
+    }
+    set {
+      resultMap.updateValue(newValue, forKey: "description")
+    }
+  }
+
+  public struct Author: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Account"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(nickname: String) {
+      self.init(unsafeResultMap: ["__typename": "Account", "nickname": nickname])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var nickname: String {
+      get {
+        return resultMap["nickname"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "nickname")
+      }
+    }
+  }
+
+  public struct Tag: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["ModuleTag"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+      GraphQLField("name", type: .nonNull(.scalar(String.self))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(name: String) {
+      self.init(unsafeResultMap: ["__typename": "ModuleTag", "name": name])
+    }
+
+    public var __typename: String {
+      get {
+        return resultMap["__typename"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "__typename")
+      }
+    }
+
+    public var name: String {
+      get {
+        return resultMap["name"]! as! String
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "name")
       }
     }
   }

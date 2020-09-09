@@ -8,6 +8,16 @@ mutation logout {
     logout
 }
 
+fragment FragResult on Module {
+    id
+    name
+    author {nickname}
+    isCore
+    publishedDateTime
+    tags {name}
+    githubLink
+    description
+}
 
 query search($query: String!, $pagination: PaginationQueryInput!) {
   search(query: $query, pagination: $pagination) {
@@ -45,6 +55,8 @@ query getUser($author: Int!, $pagination: PaginationQueryInput!) {
                 name
                 description
                 publishedDateTime
+                githubLink
+                isCore
                 author {
                     id
                     nickname

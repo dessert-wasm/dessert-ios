@@ -1,0 +1,6 @@
+framework module Pods_dessert_iosTests {
+  umbrella header "Pods-dessert-iosTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

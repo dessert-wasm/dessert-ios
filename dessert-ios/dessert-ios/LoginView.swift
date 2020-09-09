@@ -64,7 +64,7 @@ struct LoginView: View {
     func goToWebView() -> Void {
         print("Going to web...")
         
-        if let url = URL(string: "https://develop.dessert.dev/sign") {
+        if let url = URL(string: "https://dessert.dev/signup") {
             UIApplication.shared.open(url)
         }
     }

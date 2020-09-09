@@ -59,7 +59,7 @@ struct ProfileContentView: View {
             .frame(width: 100.0, height: 100.0)
             .border(Color(UIColor(named: "DessertColor")!), width: 4)
         } else {
-            Text("Invalid Image").font(.footnote)
+            Text("Loading...").font(.footnote)
         }
         Text("@" + self.profileData.user.nickname).font(.body).bold()
         

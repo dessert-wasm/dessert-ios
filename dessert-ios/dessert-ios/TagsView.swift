@@ -3,13 +3,30 @@
 import SwiftUI
 
 struct TagsView: View {
+    var tags: [SearchQuery.Data.Search.Result.Tag]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+        HStack {
+            ForEach(tags, id: \.name) { tag in
+                Text("\(tag.name)")
+                .padding(5)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 7)
+                        .stroke(Color(UIColor(named: "ProfileColor")!), lineWidth: 2)
+                )
+                .lineLimit(1)
+            }
+        }
     }
+}
 }
 
-struct TagsView_Previews: PreviewProvider {
+/* struct TagsView_Previews: PreviewProvider {
     static var previews: some View {
-        TagsView()
+        TagsView(tags: [
+            FragResult.Tag(name: "tag1"),
+            FragResult.Tag(name: "chocolat")
+        ])
     }
-}
+} */

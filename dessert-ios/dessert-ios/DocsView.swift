@@ -24,39 +24,31 @@ struct DocsView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 30) {
             Spacer()
             
             Button(action: goToWhoAreWe) {
                 Text("🤔 Who are we?")
-            .underline()
                     .fontWeight(.semibold)
-                    .font(.callout)
-                    .frame(width: 200, height: 30)
+                    .font(.headline).foregroundColor(Color(UIColor(named: "DessertColor")!))
             }
                 
             Button(action: goToWhyDessert) {
                 Text("🍰 Why Dessert?")
-            .underline()
                     .fontWeight(.semibold)
-                    .font(.callout)
-                    .frame(width: 200, height: 30)
+                    .font(.headline).foregroundColor(Color(UIColor(named: "ModulesColor")!))
             }
             
             Button(action: goToQuickStart) {
                 Text("🚀 Quickstart guide")
-            .underline()
                     .fontWeight(.semibold)
-                    .font(.callout)
-                    .frame(width: 200, height: 30)
+                    .font(.headline).foregroundColor(Color(UIColor(named: "ProfileColor")!))
             }
             
             Button(action: goToDocs) {
                 Text("⚒️ CLI Documentation")
-            .underline()
                     .fontWeight(.semibold)
-                    .font(.callout)
-                    .frame(width: 200, height: 30)
+                    .font(.headline).foregroundColor(Color(UIColor(named: "DocsColor")!))
             }
             
             Spacer()

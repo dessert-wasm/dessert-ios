@@ -2,23 +2,184 @@
 
 import SwiftUI
 
-typealias Tag = GetUserQuery.Data.User.Module.Result.Tag
+import MarkdownView
+
+class UIModuleRowController: UIViewController {
+    
+    var module: GetUserQuery.Data.User.Module.Result
+    
+    convenience init() {
+        self.init(module: nil)
+    }
+
+    init(module: GetUserQuery.Data.User.Module.Result?) {
+        self.module = module!
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Maxi error")
+    }
+    
+    func showMarkdown(url: String) {
+        let mdView = MarkdownView()
+        view.addSubview(mdView)
+        mdView.translatesAutoresizingMaskIntoConstraints = false
+        mdView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor).isActive = true
+        mdView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        mdView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        mdView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
+
+        print("GithubLink", self.module.githubLink ?? "Does not exist")
+        
+        var markdownURL = url
+        if let regex = try? NSRegularExpression(pattern: "github.com", options: .caseInsensitive) {
+                   let modString = regex.stringByReplacingMatches(in: url, options: [], range: NSRange(location: 0, length:  url.count), withTemplate: "raw.githubusercontent.com")
+                   markdownURL = modString
+        }
+        
+        markdownURL += "/master/README.md"
+        print(markdownURL)
+        
+        let url = URL(string: markdownURL)
+        var markdown = try! String(contentsOf: url!, encoding: String.Encoding.utf8)
+        
+        
+        if let regex = try? NSRegularExpression(pattern: "http:", options: .caseInsensitive) {
+            let modString = regex.stringByReplacingMatches(in: markdown, options: [], range: NSRange(location: 0, length:  markdown.count), withTemplate: "https:")
+            markdown = modString
+        }
+        
+        if let regex = try? NSRegularExpression(pattern: "!\\[GIF\\]\\(.*\\)", options: .caseInsensitive) {
+            let modString = regex.stringByReplacingMatches(in: markdown, options: [], range: NSRange(location: 0, length:  markdown.count), withTemplate: "")
+            markdown = modString
+        }
+        
+        // print(markdown)
+        
+        mdView.load(markdown: markdown, enableImage: true)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        showMarkdown(url: module.githubLink!)
+    }
+
+}
+
+struct UIModuleRowView: UIViewControllerRepresentable {
+    var module: GetUserQuery.Data.User.Module.Result
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<UIModuleRowView>) -> UIModuleRowController {
+        let moduleController = UIModuleRowController(module: module)
+        return moduleController
+    }
+
+    func updateUIViewController(_ uiViewController: UIModuleRowController, context: UIViewControllerRepresentableContext<UIModuleRowView>) {
+    }
+}
+
+struct ModuleRowHeaderView: View {
+    var module: GetUserQuery.Data.User.Module.Result
+    
+    func parseDate() -> String {
+        var parsedDate = "invalid date"
+        if let regex = try? NSRegularExpression(pattern: "T.*", options: .caseInsensitive) {
+            let modString = regex.stringByReplacingMatches(in: module.publishedDateTime, options: [], range: NSRange(location: 0, length: module.publishedDateTime.count), withTemplate: "")
+                   parsedDate = modString
+        }
+        return parsedDate
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(module.name).font(.largeTitle)
+            if module.isCore {
+                Text(String("core")).foregroundColor(Color(UIColor(named: "ModulesColor")!))
+            } else {
+                Text(String("connector")).foregroundColor(Color(UIColor(named: "DessertColor")!))
+            }
+            Text(String(format: "@%@", module.author.nickname))
+            Text(parseDate()).font(.caption)
+            TagsModuleView(tags: module.tags)
+        }.padding()
+    }
+}
+
+struct TagsModuleView: View {
+    var tags: [GetUserQuery.Data.User.Module.Result.Tag]
+    
+    var body: some View {
+        HStack {
+            ForEach(tags, id: \.name) { tag in
+                Text("\(tag.name)")
+                .padding(5)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 7)
+                        .stroke(Color(UIColor(named: "ProfileColor")!), lineWidth: 2)
+                )
+            }
+        }
+    }
+}
+
+struct ModuleRowIDView: View {
+    var module: GetUserQuery.Data.User.Module.Result
+    
+    var body: some View {
+        
+        VStack {
+            if module.githubLink != nil {
+                ModuleRowHeaderView(module: module)
+                Divider()
+                UIModuleRowView(module: module)
+            } else {
+                ModuleRowHeaderView(module: module)
+                Divider()
+                VStack(alignment: .leading) {
+                    Text(module.description)
+                }.padding()
+                Divider()
+                VStack(alignment: .center) {
+                    Text("No github link was Found :(")
+                    Text("Contact the developer of this module!")
+                }.padding()
+                Spacer()
+            }
+        }.navigationBarTitle(Text("Module"), displayMode: .inline)
+    }
+}
+
 
 struct ModuleRow: View {
     var module: GetUserQuery.Data.User.Module.Result
-
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 7) {
-            Text("\(module.name)").font(.title).bold().foregroundColor(Color(UIColor(named: "DessertColor")!))
-            Text("\(module.description)")
-            
-            HStack {
-                ForEach(module.tags, id: \.id) { tag in Text("#" + tag.name)
-                    .padding(6)
-                    .border(Color(UIColor(named: "DessertColor")!), width: 2)
+        NavigationLink(destination: ModuleRowIDView(module: self.module)) {
+            HStack() {
+                VStack(alignment: .leading, spacing: 7) {
+                    HStack {
+                        Text(module.name).font(Font.headline)
+                    }
+                    Text(String(format: "@%@", module.author.nickname))
+                    if module.isCore {
+                        Text(String("core")).foregroundColor(Color(UIColor(named: "ModulesColor")!))
+                    } else {
+                        Text(String("connector")).foregroundColor(Color(UIColor(named: "DessertColor")!))
+                    }
+                    Text(module.description)
+                        .font(Font.body)
+                    TagsModuleView(tags: module.tags)
                 }
             }
-        }.padding(10)
+        }
+        .padding()
+        .background(Color.white)
+        .frame(
+            maxWidth: .infinity,
+            alignment: .leading
+        )
     }
 }
 
@@ -46,23 +207,5 @@ struct ModuleList: View {
                 }.padding()
             }
         }
-    }
-}
-
-struct ModuleList_Previews: PreviewProvider {
-    static var previews: some View {
-        ModuleList(modules: [
-            GetUserQuery.Data.User.Module.Result(id: 1, name: "kuku", description: "imheretodance", publishedDateTime: "20/30/40", author: GetUserQuery.Data.User.Module.Result.Author(id: 1, nickname: "nick", profilePicUrl: "pic"), tags: [
-                Tag(id: 1, name: "take"),
-                Tag(id: 2, name: "your"),
-                Tag(id: 3, name: "passion"),
-                Tag(id: 4, name: "and"),
-            ]),
-            GetUserQuery.Data.User.Module.Result(id: 2, name: "kuku2", description: "rocknroll", publishedDateTime: "20/30/40", author: GetUserQuery.Data.User.Module.Result.Author(id: 1, nickname: "nick", profilePicUrl: "pic"), tags: [
-                Tag(id: 1, name: "rock"),
-                Tag(id: 2, name: "dance"),
-            ])
-            ]
-        )
     }
 }
