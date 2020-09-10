@@ -20,7 +20,7 @@ struct LoginView: View {
     @State private var showingAlert = false
     @State private var titleAlert: String = "Error"
     @State private var messageAlert: String = ""
-    @State private var email: String = "user@provider.com"
+    @State private var email: String = "lucas.santoni@epitech.eu"
     @State private var password: String = "12345"
     
     func login() -> Void {

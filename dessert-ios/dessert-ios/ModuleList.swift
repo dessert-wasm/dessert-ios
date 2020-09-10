@@ -130,7 +130,7 @@ struct ModuleRowIDView: View {
     var body: some View {
         
         VStack {
-            if module.githubLink != nil {
+            if module.githubLink != nil && module.githubLink?.count != 0 {
                 ModuleRowHeaderView(module: module)
                 Divider()
                 UIModuleRowView(module: module)
