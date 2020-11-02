@@ -3,6 +3,11 @@
 import XCTest
 
 class dessert_iosUITests: XCTestCase {
+    
+    let WHO_ARE_WE = "🤔 Who are we?"
+    let WHY_DESSERT = "🍰 Why Dessert?"
+    let QUICK_START = "🚀 Quickstart guide"
+    let CLI_DOCS = "⚒️ CLI Documentation"
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -17,13 +22,98 @@ class dessert_iosUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testSliderContent() throws {
         let app = XCUIApplication()
         app.launch()
+        // login
+        app.buttons["Login"].tap()
+        
+        // given
+        let switchButton = app.switches["Showing 🔗"]
+        let switchCore = app.staticTexts["Showing 💖"]
+        let switchConnector = app.staticTexts["Showing 🔗"]
+        
+        if switchButton.isSelected {
+            XCTAssertTrue(switchButton.exists)
+            XCTAssertTrue(switchConnector.exists)
+            switchCore.tap()
+            XCTAssertTrue(switchCore.exists)
+        }
+    }
+    
+    func testMenuContent() throws {
+        let app = XCUIApplication()
+        app.launch()
+        // login
+        app.buttons["Login"].tap()
+        
+        // Home
+        app.buttons["Home"].tap()
+        XCTAssertTrue(app.staticTexts["Home"].exists)
+        
+        // My Modules
+        app.buttons["magnifyingglass"].tap()
+        XCTAssertTrue(app.staticTexts["My Modules"].exists)
+        
+        // Profile
+        app.buttons["Profile"].tap()
+        XCTAssertTrue(app.staticTexts["Profile"].exists)
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // Docs
+        app.buttons["Docs"].tap()
+        XCTAssertTrue(app.staticTexts["Docs"].exists)
+    }
+    
+    func allDocsButtonsExist(app: XCUIApplication) {
+        XCTAssertTrue(app.buttons[WHO_ARE_WE].exists)
+        XCTAssertTrue(app.buttons[WHY_DESSERT].exists)
+        XCTAssertTrue(app.buttons[QUICK_START].exists)
+        XCTAssertTrue(app.buttons[CLI_DOCS].exists)
+    }
+    
+    func testDocs() {
+        let app = XCUIApplication()
+        app.launch()
+        // Login into the app
+        app.buttons["Login"].tap()
+
+        // Going to docs tab (and wait for login)
+        let docsButton = app.buttons["book.fill"]
+        let exists = NSPredicate(format: "exists == 1")
+
+        expectation(for: exists, evaluatedWith: docsButton, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        docsButton.tap()
+
+        // Wait for buttons to appear (and wait for login)
+        let label2 = app.buttons[WHO_ARE_WE]
+        let exists2 = NSPredicate(format: "exists == 1")
+        
+        expectation(for: exists2, evaluatedWith: label2, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        allDocsButtonsExist(app: app)
+        
+        // Testing Webview back and forth
+        //let normalized = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+        //let backButton = normalized.withOffset(CGVector(dx: 5, dy: 5))
+        
+        app.buttons[WHO_ARE_WE].tap()
+        //print(app.navigationBars["Master"].buttons)
+        //print("%%%%%%%%%%%%%%%%%%%%%%")
+        //backButton.tap()
+        
+        //app.buttons[WHY_DESSERT].tap()
+        //backButton.tap()
+        
+        //app.buttons[QUICK_START].tap()
+        //backButton.tap()
+        
+        //app.buttons[CLI_DOCS].tap()
+        //backButton.tap()
+        
+        //allDocsButtonsExist(app: app)
     }
 
     func testLaunchPerformance() throws {
