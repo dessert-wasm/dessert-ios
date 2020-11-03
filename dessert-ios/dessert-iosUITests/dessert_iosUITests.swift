@@ -46,22 +46,23 @@ class dessert_iosUITests: XCTestCase {
         app.launch()
         // login
         app.buttons["Login"].tap()
-        
-        // Home
-        app.buttons["Home"].tap()
-        XCTAssertTrue(app.staticTexts["Home"].exists)
-        
+
         // My Modules
         app.buttons["magnifyingglass"].tap()
         XCTAssertTrue(app.staticTexts["My Modules"].exists)
         
         // Profile
-        app.buttons["Profile"].tap()
+        app.buttons["person.fill"].tap()
         XCTAssertTrue(app.staticTexts["Profile"].exists)
 
         // Docs
-        app.buttons["Docs"].tap()
+        app.buttons["book.fill"].tap()
         XCTAssertTrue(app.staticTexts["Docs"].exists)
+        
+        // Home
+        app.buttons["house.fill"].tap()
+        XCTAssertTrue(app.staticTexts["Home"].exists)
+        
     }
     
     func allDocsButtonsExist(app: XCUIApplication) {
