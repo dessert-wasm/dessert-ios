@@ -21,6 +21,25 @@ class dessert_iosUITests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testLogin() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        XCTAssertTrue(app.buttons["No account?"].exists)
+        
+        // Email text input
+        XCTAssertTrue(app.staticTexts["Email"].exists)
+        XCTAssertTrue(app.textFields["Enter email"].exists)
+        
+        // Password text input
+        XCTAssertTrue(app.secureTextFields["Enter password"].exists)
+        XCTAssertTrue(app.staticTexts["Password"].exists)
+
+        // Buttons
+        XCTAssertTrue(app.buttons["Login"].exists)
+        XCTAssertTrue(app.buttons["No account?"].exists)
+    }
 
     func testSliderContent() throws {
         let app = XCUIApplication()
@@ -28,7 +47,6 @@ class dessert_iosUITests: XCTestCase {
         // login
         app.buttons["Login"].tap()
         
-        // given
         let switchButton = app.switches["Showing 🔗"]
         let switchCore = app.staticTexts["Showing 💖"]
         let switchConnector = app.staticTexts["Showing 🔗"]
@@ -87,7 +105,7 @@ class dessert_iosUITests: XCTestCase {
         
         docsButton.tap()
 
-        // Wait for buttons to appear (and wait for login)
+        // Wait for buttons to appear
         let label2 = app.buttons[WHO_ARE_WE]
         let exists2 = NSPredicate(format: "exists == 1")
         
@@ -95,26 +113,6 @@ class dessert_iosUITests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
         
         allDocsButtonsExist(app: app)
-        
-        // Testing Webview back and forth
-        //let normalized = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
-        //let backButton = normalized.withOffset(CGVector(dx: 5, dy: 5))
-        
-        app.buttons[WHO_ARE_WE].tap()
-        //print(app.navigationBars["Master"].buttons)
-        //print("%%%%%%%%%%%%%%%%%%%%%%")
-        //backButton.tap()
-        
-        //app.buttons[WHY_DESSERT].tap()
-        //backButton.tap()
-        
-        //app.buttons[QUICK_START].tap()
-        //backButton.tap()
-        
-        //app.buttons[CLI_DOCS].tap()
-        //backButton.tap()
-        
-        //allDocsButtonsExist(app: app)
     }
 
     func testLaunchPerformance() throws {
