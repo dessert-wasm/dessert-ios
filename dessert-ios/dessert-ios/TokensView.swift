@@ -25,6 +25,8 @@ struct TokensView: View {
 
 struct TokensView_Previews: PreviewProvider {
     static var previews: some View {
-        TokensView(tokens: [GetUserQuery.Data.User.Token(id: 1, token: "maxitoken", description: "maxidescription")])
+        TokensView(tokens: [
+            GetUserQuery.Data.User.Token(id: 1, token: "montoken", description: "madescription")
+        ])
     }
 }

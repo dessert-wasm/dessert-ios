@@ -39,10 +39,10 @@ struct SearchResult: View {
     }
 }
 
-/* struct SearchResult_Previews: PreviewProvider {
+struct SearchResult_Previews: PreviewProvider {
+    static var author = SearchQuery.Data.Search.Result.Author.init(nickname: "author")
+    
     static var previews: some View {
-        SearchResult(
-            module: FragResult(id: 1, name: "test", author: FragResult.Author(nickname: "hello"), isCore: false, publishedDateTime: "", tags: [], description: "description")
-        )
+        SearchResult(module: SearchQuery.Data.Search.Result.init(id: 1, name: "testModule", author: author, isCore: false, publishedDateTime: "date", tags: [SearchQuery.Data.Search.Result.Tag.init(name: "tag")], description: "module description"))
     }
-}*/
+}

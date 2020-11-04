@@ -18,17 +18,18 @@ class UIModuleRowController: UIViewController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("Maxi error")
+        fatalError("Decoder failed")
     }
     
     func showMarkdown(url: String) {
         let mdView = MarkdownView()
+        
         view.addSubview(mdView)
         mdView.translatesAutoresizingMaskIntoConstraints = false
-        mdView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor).isActive = true
+        mdView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         mdView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         mdView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        mdView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
+        mdView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 
         print("GithubLink", self.module.githubLink ?? "Does not exist")
         
@@ -188,11 +189,13 @@ struct ModuleList: View {
     
     init(modules: [GetUserQuery.Data.User.Module.Result]) {
         self.modules = modules
+        
         // To remove only extra separators below the list:
         UITableView.appearance().tableFooterView = UIView()
-
-        // To remove all separators including the actual ones:
-        /* UITableView.appearance().separatorStyle = .none */
+        
+        // Getting rid of greyish background color
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
     }
     
     var body: some View {

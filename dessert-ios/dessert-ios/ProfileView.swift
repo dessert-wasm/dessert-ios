@@ -114,8 +114,7 @@ struct ProfileView: View {
                 }).padding()
 
         }.padding()
-        /*.background(Color.yellow)*/
-}
+    }
 }
 
 struct ProfileView_Previews: PreviewProvider {

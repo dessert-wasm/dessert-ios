@@ -20,14 +20,10 @@ struct LoginView: View {
     @State private var showingAlert = false
     @State private var titleAlert: String = "Error"
     @State private var messageAlert: String = ""
-    @State private var email: String = "lucas.santoni@epitech.eu"
-    @State private var password: String = "12345"
+    @State private var email: String = Test.TEST_EMAIL
+    @State private var password: String = Test.TEST_PASSWORD
     
     func login() -> Void {
-        print("Login logic here...")
-        print("email", email)
-        print("password", password)
-        
         if (email == "" || password == "") {
             self.titleAlert = Login.OOPS
             self.messageAlert = Login.PROVIDE_CREDS
@@ -42,12 +38,9 @@ struct LoginView: View {
             switch result {
             case.success(let graphQLResult):
                 if let id = graphQLResult.data?.login.id {
-                    print("Got id", id)
                     self.userAuth.setUserID(userID: id)
                     self.userAuth.login()
-                } else if let errors = graphQLResult.errors {
-                    // fail graphQL
-                    print("graphQL fail", errors)
+                } else if graphQLResult.errors != nil {
                     self.titleAlert = Login.INVALID_CREDS
                     self.messageAlert = Login.CHECK_CREDS
                     self.showingAlert = true;
@@ -62,9 +55,7 @@ struct LoginView: View {
     }
     
     func goToWebView() -> Void {
-        print("Going to web...")
-        
-        if let url = URL(string: "https://dessert.dev/signup") {
+        if let url = URL(string: WebView.WEB_SIGN_UP) {
             UIApplication.shared.open(url)
         }
     }

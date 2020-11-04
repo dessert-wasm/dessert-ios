@@ -7,7 +7,6 @@ class ModulesData : ObservableObject {
     @Published var modules: [GetUserQuery.Data.User.Module.Result]
 
     init(userID: Int) {
-        print("Gathering modules data...")
         self.userID = userID
         self.modules = []
         gatherData()
@@ -26,7 +25,6 @@ class ModulesData : ObservableObject {
             case .success(let graphQLResult):
                 print(graphQLResult)
                 if let modules = graphQLResult.data?.user.modules.result {
-                    print("modules", modules)
                     self.modules = modules as! [GetUserQuery.Data.User.Module.Result]
                 } else if let errors = graphQLResult.errors {
                     print(errors)

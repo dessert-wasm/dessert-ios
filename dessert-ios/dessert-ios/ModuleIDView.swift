@@ -24,10 +24,10 @@ class UIModuleController: UIViewController {
         let mdView = MarkdownView()
         view.addSubview(mdView)
         mdView.translatesAutoresizingMaskIntoConstraints = false
-        mdView.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor).isActive = true
+        mdView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         mdView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         mdView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        mdView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor).isActive = true
+        mdView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 
         print("GithubLink", self.module.githubLink ?? "Does not exist")
         
