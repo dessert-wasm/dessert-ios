@@ -31,30 +31,13 @@ class UIModuleRowController: UIViewController {
         mdView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         mdView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 
-        print("GithubLink", self.module.githubLink ?? "Does not exist")
+        //print("GithubLink", self.module.githubLink ?? "Does not exist")
         
-        var markdownURL = url
-        if let regex = try? NSRegularExpression(pattern: "github.com", options: .caseInsensitive) {
-                   let modString = regex.stringByReplacingMatches(in: url, options: [], range: NSRange(location: 0, length:  url.count), withTemplate: "raw.githubusercontent.com")
-                   markdownURL = modString
-        }
-        
-        markdownURL += "/master/README.md"
-        print(markdownURL)
-        
-        let url = URL(string: markdownURL)
-        var markdown = try! String(contentsOf: url!, encoding: String.Encoding.utf8)
-        
-        
-        if let regex = try? NSRegularExpression(pattern: "http:", options: .caseInsensitive) {
-            let modString = regex.stringByReplacingMatches(in: markdown, options: [], range: NSRange(location: 0, length:  markdown.count), withTemplate: "https:")
-            markdown = modString
-        }
-        
-        if let regex = try? NSRegularExpression(pattern: "!\\[GIF\\]\\(.*\\)", options: .caseInsensitive) {
-            let modString = regex.stringByReplacingMatches(in: markdown, options: [], range: NSRange(location: 0, length:  markdown.count), withTemplate: "")
-            markdown = modString
-        }
+        let urlRaw = Helper.githubToRaw(link: url)
+        let readMeLink = Helper.githubReadMe(link: urlRaw!)
+        var markdown = try! String(contentsOf: URL(string: readMeLink)!, encoding: String.Encoding.utf8)
+        markdown = Helper.stepUpToHTTPS(markdown: markdown)
+        markdown = Helper.removeGIFs(markdown: markdown)
         mdView.load(markdown: markdown, enableImage: true)
     }
     
