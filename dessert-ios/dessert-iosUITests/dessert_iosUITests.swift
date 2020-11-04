@@ -95,7 +95,7 @@ class dessert_iosUITests: XCTestCase {
         let exists = NSPredicate(format: "exists == 1")
 
         expectation(for: exists, evaluatedWith: docsButton, handler: nil)
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         
         docsButton.tap()
 
@@ -104,7 +104,7 @@ class dessert_iosUITests: XCTestCase {
         let exists2 = NSPredicate(format: "exists == 1")
         
         expectation(for: exists2, evaluatedWith: label2, handler: nil)
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         
         allDocsButtonsExist(app: app)
     }
