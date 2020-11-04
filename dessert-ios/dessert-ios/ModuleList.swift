@@ -55,18 +55,13 @@ class UIModuleRowController: UIViewController {
             let modString = regex.stringByReplacingMatches(in: markdown, options: [], range: NSRange(location: 0, length:  markdown.count), withTemplate: "")
             markdown = modString
         }
-        
-        // print(markdown)
-        
         mdView.load(markdown: markdown, enableImage: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         showMarkdown(url: module.githubLink!)
     }
-
 }
 
 struct UIModuleRowView: UIViewControllerRepresentable {
@@ -84,15 +79,6 @@ struct UIModuleRowView: UIViewControllerRepresentable {
 struct ModuleRowHeaderView: View {
     var module: GetUserQuery.Data.User.Module.Result
     
-    func parseDate() -> String {
-        var parsedDate = "invalid date"
-        if let regex = try? NSRegularExpression(pattern: "T.*", options: .caseInsensitive) {
-            let modString = regex.stringByReplacingMatches(in: module.publishedDateTime, options: [], range: NSRange(location: 0, length: module.publishedDateTime.count), withTemplate: "")
-                   parsedDate = modString
-        }
-        return parsedDate
-    }
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(module.name).font(.largeTitle)
@@ -102,7 +88,7 @@ struct ModuleRowHeaderView: View {
                 Text(String("connector")).foregroundColor(Color(UIColor(named: "DessertColor")!))
             }
             Text(String(format: "@%@", module.author.nickname))
-            Text(parseDate()).font(.caption)
+            Text(Helper.parseDate(dateToParse: module.publishedDateTime)).font(.caption)
             TagsModuleView(tags: module.tags)
         }.padding()
     }
@@ -129,7 +115,6 @@ struct ModuleRowIDView: View {
     var module: GetUserQuery.Data.User.Module.Result
     
     var body: some View {
-        
         VStack {
             if module.githubLink != nil && module.githubLink?.count != 0 {
                 ModuleRowHeaderView(module: module)
