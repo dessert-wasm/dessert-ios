@@ -82,14 +82,14 @@ struct UIModuleView: UIViewControllerRepresentable {
 struct ModuleHeaderView: View {
     var module: SearchQuery.Data.Search.Result
     
-    func parseDate() -> String {
+    /* func parseDate() -> String {
         var parsedDate = "invalid date"
         if let regex = try? NSRegularExpression(pattern: "T.*", options: .caseInsensitive) {
             let modString = regex.stringByReplacingMatches(in: module.publishedDateTime, options: [], range: NSRange(location: 0, length: module.publishedDateTime.count), withTemplate: "")
                    parsedDate = modString
         }
         return parsedDate
-    }
+    }*/
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -100,7 +100,7 @@ struct ModuleHeaderView: View {
                 Text(String("connector")).foregroundColor(Color(UIColor(named: "DessertColor")!))
             }
             Text(String(format: "@%@", module.author.nickname))
-            Text(parseDate()).font(.caption)
+            Text(Helper.parseDate(dateToParse: module.publishedDateTime)).font(.caption)
             TagsView(tags: module.tags)
         }.padding()
     }

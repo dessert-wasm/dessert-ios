@@ -22,11 +22,11 @@ struct TagsView: View {
 }
 }
 
-/* struct TagsView_Previews: PreviewProvider {
+struct TagsView_Previews: PreviewProvider {
     static var previews: some View {
         TagsView(tags: [
-            FragResult.Tag(name: "tag1"),
-            FragResult.Tag(name: "chocolat")
+            SearchQuery.Data.Search.Result.Tag(name: "tag1"),
+            SearchQuery.Data.Search.Result.Tag(name: "chocolat")
         ])
     }
-} */
+}

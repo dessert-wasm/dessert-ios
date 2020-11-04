@@ -13,8 +13,6 @@ class ModulesData : ObservableObject {
     }
     
     func gatherData() {
-        print("Here")
-        
         let pagination = PaginationQueryInput(includeCount: true, pageNumber: 1, pageSize: 10)
         
         let query = GetUserQuery(author: self.userID, pagination: pagination)

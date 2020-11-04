@@ -4,25 +4,32 @@ import XCTest
 @testable import dessert_ios
 
 class dessert_iosTests: XCTestCase {
-
+    // We test the Helper class of the dessert IOS app
+    var sut: Helper!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        sut = Helper()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testDateParsingValid() throws {
+        let date = "T.15141210"
+        let res = Helper.parseDate(dateToParse: date)
+        
+        print("valid", res)
+        XCTAssertTrue(res == "15141210")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testDateParsingInvalid() throws {
+        let date = "iamnonono"
+        let res = Helper.parseDate(dateToParse: date)
+        
+        print("invalid", res)
+        XCTAssertTrue(res == "invalid date")
     }
-
 }
