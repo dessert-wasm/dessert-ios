@@ -62,15 +62,6 @@ struct UIModuleView: UIViewControllerRepresentable {
 struct ModuleHeaderView: View {
     var module: SearchQuery.Data.Search.Result
     
-    /* func parseDate() -> String {
-        var parsedDate = "invalid date"
-        if let regex = try? NSRegularExpression(pattern: "T.*", options: .caseInsensitive) {
-            let modString = regex.stringByReplacingMatches(in: module.publishedDateTime, options: [], range: NSRange(location: 0, length: module.publishedDateTime.count), withTemplate: "")
-                   parsedDate = modString
-        }
-        return parsedDate
-    }*/
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(module.name).font(.largeTitle)
