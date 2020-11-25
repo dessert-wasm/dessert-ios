@@ -28,8 +28,6 @@ class UIModuleController: UIViewController {
         mdView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         mdView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         mdView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-
-        //print("GithubLink", self.module.githubLink ?? "Does not exist")
         
         let urlRaw = Helper.githubToRaw(link: url)
         let readMeLink = Helper.githubReadMe(link: urlRaw!)
