@@ -473,7 +473,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellScript = "/Users/pistachio/dessert-ios/dessert-ios/dessert-ios/apollo_script.sh\n";
+			shellScript = "/Users/kakolax/Projects/dessert-ios/dessert-ios/dessert-ios/apollo_script.sh\n";
 		};
 		6AF87F9B58A8592F4086FAE9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
